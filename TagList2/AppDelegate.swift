@@ -13,9 +13,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var db: OpaquePointer? = nil
+    static let ENTRY = "entry"
+    static let IS_FINISH = "is_finish"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let fm = FileManager.default
+        let src = Bundle.main.path(forResource: "TagList", ofType: "sqlite")
+        let dst = NSHomeDirectory() + "/Documents/TagList.sqlite"
+        
+        if !fm.fileExists(atPath: dst) {
+            try! fm.copyItem(atPath: src!, toPath: dst)
+        }
+        
+        if sqlite3_open(src!, &db) != SQLITE_OK {
+            db = nil
+        }
+        
         return true
     }
 
@@ -39,6 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        guard db != nil else {
+            return
+        }
+        
+        sqlite3_close(db!)
     }
 
 

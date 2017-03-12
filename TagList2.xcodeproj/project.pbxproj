@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		041707F41E74ED69007AED41 /* EditEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041707F31E74ED69007AED41 /* EditEntryViewController.swift */; };
+		044337481E7528F800AFAC26 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 044337471E7528F800AFAC26 /* libsqlite3.tbd */; };
+		0443374A1E752AF000AFAC26 /* TagList.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 044337491E752AF000AFAC26 /* TagList.sqlite */; };
+		046CE3191E7541BE00482BAF /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CE3181E7541BE00482BAF /* Entry.swift */; };
 		04BFFFA31E73B01D00E76C3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFA21E73B01D00E76C3B /* AppDelegate.swift */; };
 		04BFFFA51E73B01D00E76C3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFA41E73B01D00E76C3B /* ViewController.swift */; };
 		04BFFFA81E73B01D00E76C3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BFFFA61E73B01D00E76C3B /* Main.storyboard */; };
@@ -37,6 +40,9 @@
 /* Begin PBXFileReference section */
 		041707F31E74ED69007AED41 /* EditEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditEntryViewController.swift; path = TagList2/EditEntryViewController.swift; sourceTree = "<group>"; };
 		044337451E75205600AFAC26 /* Sqlite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Sqlite.h; path = TagList2/Sqlite.h; sourceTree = "<group>"; };
+		044337471E7528F800AFAC26 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		044337491E752AF000AFAC26 /* TagList.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = TagList.sqlite; sourceTree = "<group>"; };
+		046CE3181E7541BE00482BAF /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = Assets.xcassets/Entry.swift; sourceTree = "<group>"; };
 		04BFFF9F1E73B01D00E76C3B /* TagList2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagList2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BFFFA21E73B01D00E76C3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04BFFFA41E73B01D00E76C3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044337481E7528F800AFAC26 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,15 +84,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		044337461E7528F800AFAC26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				044337471E7528F800AFAC26 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		04BFFF961E73B01C00E76C3B = {
 			isa = PBXGroup;
 			children = (
+				044337491E752AF000AFAC26 /* TagList.sqlite */,
 				044337451E75205600AFAC26 /* Sqlite.h */,
 				041707F31E74ED69007AED41 /* EditEntryViewController.swift */,
 				04BFFFA11E73B01D00E76C3B /* TagList2 */,
 				04BFFFB61E73B01D00E76C3B /* TagList2Tests */,
 				04BFFFC11E73B01D00E76C3B /* TagList2UITests */,
 				04BFFFA01E73B01D00E76C3B /* Products */,
+				044337461E7528F800AFAC26 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				04BFFFA21E73B01D00E76C3B /* AppDelegate.swift */,
+				046CE3181E7541BE00482BAF /* Entry.swift */,
 				04BFFFA41E73B01D00E76C3B /* ViewController.swift */,
 				04BFFFA61E73B01D00E76C3B /* Main.storyboard */,
 				04BFFFA91E73B01D00E76C3B /* Assets.xcassets */,
@@ -238,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0443374A1E752AF000AFAC26 /* TagList.sqlite in Resources */,
 				04BFFFAD1E73B01D00E76C3B /* LaunchScreen.storyboard in Resources */,
 				04BFFFAA1E73B01D00E76C3B /* Assets.xcassets in Resources */,
 				04BFFFA81E73B01D00E76C3B /* Main.storyboard in Resources */,
@@ -265,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046CE3191E7541BE00482BAF /* Entry.swift in Sources */,
 				04BFFFA51E73B01D00E76C3B /* ViewController.swift in Sources */,
 				041707F41E74ED69007AED41 /* EditEntryViewController.swift in Sources */,
 				04BFFFA31E73B01D00E76C3B /* AppDelegate.swift in Sources */,
@@ -364,6 +384,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -408,6 +429,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				NEW_SETTING = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -424,6 +446,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ballfish.TagList2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = TagList2/Sqlite.h;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = TagList2/Sqlite.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -437,6 +461,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ballfish.TagList2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = TagList2/Sqlite.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
