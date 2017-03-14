@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             try! fm.copyItem(atPath: src!, toPath: dst)
         }
         
-        if sqlite3_open(src!, &db) != SQLITE_OK {
+        if sqlite3_open(dst, &db) != SQLITE_OK {
             db = nil
         }
         

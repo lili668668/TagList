@@ -50,17 +50,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let one = entry()
                 let id = sqlite3_column_int(res, 0)
                 let content = sqlite3_column_text(res, 1)
-                let is_finish = sqlite3_column_text(res, 2)
+                //let is_finish = sqlite3_column_text(res, 2)
                 
-                if is_finish != nil {
-                    let is_finish_s = String(cString: is_finish!)
                     
-                    if is_finish_s != "y" {
-                        if content != nil {
-                            one.content = String(cString: entry!)
-                            entryList.append(one)
-                        }
-                    }
+                if content != nil {
+                    one.content = String(cString: content!)
+                    entryList.insert(one, at: Int(id))
                 }
             }
             
@@ -72,7 +67,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func insertEntry(_ id: Int, _ entry: String) {
         if delegate.db != nil {
             let entry_c = entry.cString(using: .utf8)
-            let sql = "INSERT INTO tag_list(id, entry) VALUES(?, ?, ?);"
+            let sql = "INSERT INTO tag_list(id, entry) VALUES(?, ?);"
             var res: OpaquePointer? = nil
             
             if sqlite3_prepare(delegate.db, sql, -1, &res, nil) != SQLITE_OK {
@@ -183,6 +178,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         entryList.append(one)
         entryListView.reloadData()
+        insertEntry(entryList.count - 1, one.content)
         
         newEntryTextbox.text = ""
     }
@@ -206,7 +202,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let entry = tableView.dequeueReusableCell(withIdentifier: "Entry", for: indexPath)
-        entry.textLabel?.text = entryList[indexPath.row]
+        entry.textLabel?.text = entryList[indexPath.row].content
         return entry
     }
     
@@ -218,11 +214,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let tmp = entryList[sourceIndexPath.row]
         entryList.remove(at: sourceIndexPath.row)
         entryList.insert(tmp, at: destinationIndexPath.row)
+        
+        for cnt in 0 ... entryList.count {
+            let one: entry = entryList[cnt]
+            updateEntry(cnt, one.content)
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         entryList.remove(at: indexPath.row)
         entryListView.deleteRows(at: [indexPath], with: .automatic)
+        deleteEntry(indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
@@ -233,7 +235,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if segue.identifier == "EditEntry" {
             let vc: EditEntryViewController = segue.destination as! EditEntryViewController
             vc.entryId = entryListView.indexPathForSelectedRow?.row
-            vc.entryTitle = entryList[(entryListView.indexPathForSelectedRow?.row)!]
+            vc.entryTitle = entryList[(entryListView.indexPathForSelectedRow?.row)!].content
         }
     }
     
@@ -244,6 +246,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             one.content = vc.entryTitle!
             entryList[vc.entryId!] = one
             entryListView.reloadData()
+            updateEntry(vc.entryId!, one.content)
         }
     }
 
